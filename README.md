@@ -1,4 +1,4 @@
-# New Jersey Housing Trends (2012-2024)
+# New Jersey Housing Trends: A 10-20 Year Look at Price Evolution and National Market Factors
 
 ## Overview
 This project analyzes housing price trends across major cities in New Jersey from 2012 to 2024. It also examines how these trends compare with median income growth and explores national economic factors influencing the housing market.
