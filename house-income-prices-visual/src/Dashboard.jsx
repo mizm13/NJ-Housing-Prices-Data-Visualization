@@ -1,6 +1,7 @@
 import React from 'react';
 import LineChart from './LineChart';
 import BarChart from './BarChart';
+import HeatmapChart from './HeatmapChart';
 
 const Dashboard = () => {
     return (
@@ -9,15 +10,15 @@ const Dashboard = () => {
                 <h1>New Jersey Housing Market Analysis (2012-2024)</h1>
                 <p>Examining housing prices and affordability across cities</p>
             </header>
-
             <section>
                 <LineChart />
             </section>
-
             <section>
                 <BarChart />
             </section>
-
+            <section>
+                <HeatmapChart />
+            </section>
             <section style={{
                 margin: '30px auto',
                 padding: '20px',
@@ -30,9 +31,9 @@ const Dashboard = () => {
                     <li>Ocean City consistently has the highest home prices among the cities analyzed</li>
                     <li>When comparing price-to-income ratios, we can see differences in affordability across regions</li>
                     <li>Housing prices have outpaced income growth in most cities since 2012</li>
+                    <li>The heatmap shows significant regional variations in price growth since 2012</li>
                 </ul>
             </section>
-
             <footer style={{ textAlign: 'center', padding: '20px', fontSize: '14px', color: '#666' }}>
                 <p>Data source: New Jersey housing and income statistics (2012-2024)</p>
             </footer>
