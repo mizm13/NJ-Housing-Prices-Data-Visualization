@@ -7,8 +7,6 @@ const LineChart = () => {
 
     useEffect(() => {
         d3.csv('/data.csv').then((loadedData) => {
-            console.log('Loaded Data:', loadedData);
-
             const parsedData = loadedData.map((d) => ({
                 date: d3.timeParse('%m/%d/%Y')(d.Years),
                 TrentonPrices: +d.TrentonPrices,
@@ -28,7 +26,7 @@ const LineChart = () => {
         if (data.length > 0) {
             const width = 950;
             const height = 500;
-            const margin = { top: 50, right: 50, bottom: 60, left: 80 };
+            const margin = { top: 50, right: 150, bottom: 60, left: 80 };
 
             const x = d3.scaleTime()
                 .domain(d3.extent(data, (d) => d.date))
@@ -57,6 +55,7 @@ const LineChart = () => {
 
             svg.selectAll('*').remove();
 
+            // Draw lines
             Object.keys(colors).forEach((key) => {
                 const line = d3.line()
                     .x((d) => x(d.date))
@@ -70,19 +69,19 @@ const LineChart = () => {
                     .attr('d', line);
             });
 
+            // Add axes
             svg.append('g')
                 .attr('transform', `translate(0,${height - margin.bottom})`)
-                .call(d3.axisBottom(x).ticks(15).tickFormat(d3.timeFormat('%Y')).tickSizeOuter(0))
-                .selectAll('text')
-                .attr('dy', '10px');
+                .call(d3.axisBottom(x).ticks(15).tickFormat(d3.timeFormat('%Y')).tickSizeOuter(0));
 
             svg.append('g')
                 .attr('transform', `translate(${margin.left},0)`)
                 .call(d3.axisLeft(y)
-                    .tickValues(d3.range(0, yMax + 50000, 50000)) // Y-axis increments by $50,000
-                    .tickFormat(d3.format("$.2s")) // Formats as currency
+                    .tickValues(d3.range(0, yMax + 50000, 50000))
+                    .tickFormat(d3.format("$.2s"))
                 );
 
+            // Add axis labels
             svg.append('text')
                 .attr('x', width / 2)
                 .attr('y', height - 10)
@@ -99,6 +98,24 @@ const LineChart = () => {
                 .attr('text-anchor', 'middle')
                 .attr('font-size', '14px')
                 .text('House Prices ($)');
+
+            // Add Legend
+            const legend = svg.append('g')
+                .attr('transform', `translate(${width - 140},${margin.top})`)
+                .selectAll('g')
+                .data(Object.keys(colors))
+                .join('g')
+                .attr('transform', (d, i) => `translate(0, ${i * 20})`);
+
+            legend.append('rect')
+                .attr('width', 15)
+                .attr('height', 15)
+                .attr('fill', d => colors[d]);
+
+            legend.append('text')
+                .attr('x', 20)
+                .attr('y', 10)
+                .text(d => d.replace('Prices', '').replace(/([A-Z])/g, ' $1').trim());
         }
     }, [data]);
 
