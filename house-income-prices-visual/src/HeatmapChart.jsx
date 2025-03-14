@@ -9,7 +9,7 @@ const HeatmapChart = () => {
         d3.csv('/data.csv').then((loadedData) => {
             // Process to get yearly data
             const yearlyData = [];
-            const cityFields = ['TrentonPrices', 'AtlanticCityPrices', 'VinelandPrices', 'OceanCityPrices'];
+            const cityFields = ['TrentonIncome', 'AtlanticCityIncome', 'VinelandIncome', 'OceanCityIncome'];
             const cityNames = ['Trenton', 'Atlantic City', 'Vineland', 'Ocean City'];
 
             // Group by year and calculate average prices
@@ -140,7 +140,7 @@ const HeatmapChart = () => {
                 .attr('text-anchor', 'middle')
                 .attr('font-size', '16px')
                 .attr('font-weight', 'bold')
-                .text('House Price Growth Since 2012 (%)');
+                .text('Median Income Growth Since 2012 (%)');
 
             // Add legend
             const legendWidth = 200;
@@ -197,8 +197,8 @@ const HeatmapChart = () => {
 
     return (
         <div style={{ textAlign: 'center', padding: '20px', background: '#eef2f7', borderRadius: '10px', marginTop: '30px', maxWidth: '850px', margin: '30px auto' }}>
-            <h2 style={{ marginBottom: '10px' }}>Housing Price Growth Comparison</h2>
-            <p style={{ marginBottom: '20px', fontSize: '14px' }}>Percentage change in prices compared to 2012 baseline</p>
+            <h2 style={{ marginBottom: '10px' }}>Median Income Growth Comparison</h2>
+            <p style={{ marginBottom: '20px', fontSize: '14px' }}>Percentage change in median income compared to 2012 baseline</p>
             <svg ref={svgRef}></svg>
         </div>
     );
