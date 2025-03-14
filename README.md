@@ -18,7 +18,7 @@ This project analyzes housing price trends across major cities in New Jersey fro
 ## Visualization Approach
 The project utilizes various data visualizations to illustrate housing market trends:
 - **Line Charts:** Depicting housing price trends over time.
-- **Bar Graphs:** Showing percentage changes in median income over the years.
+- **Heatmap Chart:** Showing percentage changes in median income over the years.
 - **Pie Charts:** Representing economic factors influencing national housing prices.
 
 ## Conclusion
